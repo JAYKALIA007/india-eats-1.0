@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM  from 'react-dom/client'
 import Header from './src/components/Header'
 import Body from './src/components/Body'
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import SearchBar from './src/components/SearchBar';
 /**
  * 
  * APP LAYOUT
@@ -24,8 +26,25 @@ import Body from './src/components/Body'
 const AppLayout = () => (
     <>
         <Header />
-        <Body />
+        <Outlet/>
     </>
 )
+const appRouter = createBrowserRouter([
+    {
+        path: '/',
+        element: <AppLayout />,
+        errorElement: <p>Error Page</p>,
+        children: [
+            {
+                path : '/',
+                element : <Body />
+            },
+            {
+                path: '/search',
+                element : <SearchBar />
+            }
+        ]
+    }
+])
 const rootElement = ReactDOM.createRoot(document.getElementById('root'))
-rootElement.render( <AppLayout />)
+rootElement.render( <RouterProvider router={appRouter} />)
