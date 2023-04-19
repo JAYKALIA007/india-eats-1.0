@@ -9,7 +9,7 @@ const useFetchAllRestaurants = () => {
     const fetchRestaurantData = async() => {
         const data = await fetch(RESTAURANT_DATA_URL)
         const jsonData = await data.json()
-        console.log(jsonData?.data?.cards[2]?.data?.data?.cards)
+        // console.log(jsonData?.data?.cards[2]?.data?.data?.cards)
         setRestaurantsData(jsonData?.data?.cards[2]?.data?.data?.cards)
     }
 

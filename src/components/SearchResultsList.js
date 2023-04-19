@@ -3,7 +3,7 @@ import SearchResultCard from './SearchResultCard'
 
 const SearchResultsList = ({data}) => {
     if(!data) return null
-    console.log(data)
+    // console.log(data)
   return (
     <div className='grid grid-flow-col ' >
         <div className='col-span-4'>
@@ -11,8 +11,8 @@ const SearchResultsList = ({data}) => {
         </div>
 
         <div className='w-full mt-10 col-span-4' >
-            {data.map(res=>(
-                <SearchResultCard {...res}/>
+            {data.map((res,index)=>(
+                <SearchResultCard {...res} key={index}/>
             ))}
         </div>
         <div className='col-span-4'>

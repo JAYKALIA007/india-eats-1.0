@@ -4,6 +4,7 @@ import Header from './src/components/Header'
 import Body from './src/components/Body'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import SearchBar from './src/components/SearchBar';
+import RestaurantMenu from './src/components/RestaurantMenu';
 /**
  * 
  * APP LAYOUT
@@ -42,6 +43,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/search',
                 element : <SearchBar />
+            },
+            {
+                path : '/restaurants/:slug',
+                element: <RestaurantMenu />
             }
         ]
     }

@@ -22,7 +22,7 @@ const SearchBar = () => {
 
     const fetchSuggestions = async() =>{
         setFilterFlag(true)
-        const SEARCH_SUGGESTIONS = `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=12.9715987&lng=77.5945627&str=${searchText}&trackingId=undefined`
+        const SEARCH_SUGGESTIONS = `https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/search/suggest?lat=12.9715987&lng=77.5945627&str=${searchText}&trackingId=undefined`
         const data = await fetch(SEARCH_SUGGESTIONS)
         const jsonData = await data.json()
         // console.log(jsonData?.data?.suggestions)
