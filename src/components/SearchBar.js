@@ -2,6 +2,7 @@ import { useState , useEffect } from 'react'
 import { IMAGE_CDN_URL, SEARCH_POPULAR_CUISINES_SUGGESTIONS } from '../../constants'
 import { FaSearch } from "react-icons/fa";
 import SearchResultsList from './SearchResultsList';
+import ShimmerSearchPage from './ShimmerSearchPage';
 
 const SearchBar = () => {
     const [ searchText , setSearchText ] = useState('')
@@ -55,17 +56,18 @@ const SearchBar = () => {
             <FaSearch className=" text-gray-600 inline text-2xl font-extralight relative right-12 cursor-pointer " onClick={()=>{
                 
             }}/>
-            {filterFlag ? <SearchResultsList data={searchResults}  /> : (
-                <>
-                    <div className='w-3/5 inline-flex mt-10 text-xl font-extrabold ' >
-                        <span className='block text-left ' >Popular Cuisines</span>
-                    </div>
-                    <div className='inline-flex mt-10' >
-                        { displayPopularCuisines}
-                    </div>
-                </>  
-            ) }
-            
+            {popularCuisines.length === 0 ? <ShimmerSearchPage /> : filterFlag ? 
+                    <SearchResultsList data={searchResults}  /> : (
+                    <>
+                        <div className='w-3/5 inline-flex mt-10 text-xl font-extrabold ' >
+                            <span className='block text-left ' >Popular Cuisines</span>
+                        </div>
+                        <div className='inline-flex mt-10' >
+                            { displayPopularCuisines}
+                        </div>
+                    </>  
+                ) 
+            }  
         </div>
     )
 }

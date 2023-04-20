@@ -4,6 +4,7 @@ import { CgTimelapse } from 'react-icons/cg'
 import { HiOutlineCurrencyRupee } from 'react-icons/hi2'
 import { FaStar } from 'react-icons/fa'
 const RestaurantInfo = ({name,cuisines,areaName,totalRatingsString,costForTwoMessage,cloudinaryImageId,avgRatingString,aggregatedDiscountInfo,expectationNotifiers,sla}) => {
+  // console.log(name)
   return (
     <div className="my-12 text-[#82838F] text-sm " >
       <div className="flex justify-between  border-b border-gray-400 border-dashed	mr-20  " >
@@ -11,7 +12,10 @@ const RestaurantInfo = ({name,cuisines,areaName,totalRatingsString,costForTwoMes
           <p className="text-[#282C3F] text-2xl font-bold my-2 ">{name}</p>
           <p>{cuisines.join(', ')}</p>
           <p>{areaName}</p>
-          <p className="text-base  my-2" ><MdOutlineDirectionsBike className='inline mr-2' />{expectationNotifiers[0]?.text}</p>
+          { expectationNotifiers && 
+              <p className="text-base  my-2" ><MdOutlineDirectionsBike className='inline mr-2' />{expectationNotifiers[0]?.text}</p>
+          }
+          
         </div>
         <div className='border border-gray-300 h-24 p-1 w-20 text-center rounded-md shadow-sm ' >   
           <p className='text-[#3E9B6D] font-bold text-base my-2' ><FaStar className='inline relative bottom-[2px] mr-1 ' />{avgRatingString}</p>
