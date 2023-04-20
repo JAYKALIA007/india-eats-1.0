@@ -2,11 +2,11 @@ import React,{ useState } from 'react'
 import { IMAGE_CDN_URL } from '../../constants'
 import { FaStar } from "react-icons/fa";
 import { HiOutlineReceiptPercent } from "react-icons/hi2"
-const RestaurantCard = ({data}) => {
+const RestaurantCard = (props) => {
     // console.log(data)
     const [ color, setColor ] = useState('')
-    if(!data) return null
-    const { name, uuid, avgRating, cloudinaryImageId, costForTwoString, deliveryTime, cuisines, aggregatedDiscountInfo } = data
+    if(!props) return null
+    const { name, uuid, avgRating, cloudinaryImageId, costForTwoString, deliveryTime, cuisines, aggregatedDiscountInfo } = props
     const discountString = aggregatedDiscountInfo?.descriptionList[0]?.meta
     
   return (
