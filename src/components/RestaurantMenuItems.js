@@ -1,13 +1,16 @@
 import React from 'react'
 import { MENU_ITEMS_IMAGE_CDN_URL } from '../../constants'
+import { BsCircleFill } from 'react-icons/bs'
+import { TiArrowSortedUp } from 'react-icons/ti'
 const RestaurantMenuItems = ({data, title}) => {
-    // console.log(data)
+    console.log(data)
     if(!data) return null
     const displayItems = data.map(item=>(
       <div className='my-10 [&:not(:last-child)]:border-b border-slate-200' key={item?.card.info?.id} >
         <div className='w-full flex' >
           <div className='w-3/4'>
             <div className='text-xl font-normal my-2' >
+              {item?.card?.info?.isVeg ? <BsCircleFill className=' text-green-600 text-sm mb-2' />: <TiArrowSortedUp className='text-red-500 text-3xl'  />}
               <p className='' >{item?.card?.info?.name}</p>
               <p className='' >₹{item?.card?.info?.price ? item?.card?.info?.price/100 : item?.card?.info?.defaultPrice/100}</p>
             </div>
