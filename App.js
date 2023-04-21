@@ -5,6 +5,8 @@ import Body from './src/components/Body'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import SearchBar from './src/components/SearchBar';
 import RestaurantMenu from './src/components/RestaurantMenu';
+import { Provider } from 'react-redux'
+import store from './src/utils/store';
 /**
  * 
  * APP LAYOUT
@@ -52,4 +54,8 @@ const appRouter = createBrowserRouter([
     }
 ])
 const rootElement = ReactDOM.createRoot(document.getElementById('root'))
-rootElement.render( <RouterProvider router={appRouter} />)
+rootElement.render( 
+    <Provider store={store}>
+        <RouterProvider router={appRouter} />
+    </Provider> 
+)

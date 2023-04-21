@@ -3,31 +3,52 @@ import { IMAGE_CDN_URL, SEARCH_POPULAR_CUISINES_SUGGESTIONS } from '../../consta
 import { FaSearch } from "react-icons/fa";
 import SearchResultsList from './SearchResultsList';
 import ShimmerSearchPage from './ShimmerSearchPage';
-
+import { useDispatch, useSelector } from 'react-redux'
+import { addToSearchCacheSlice } from '../utils/searchSuggestionsCacheSlice';
 const SearchBar = () => {
     const [ searchText , setSearchText ] = useState('')
     const [ popularCuisines , setPopularCuisines ] = useState([])
     const [ searchResults , setSearchResults ] = useState([])
     const [ filterFlag , setFilterFlag ] = useState(false)
+    const dispatch = useDispatch()
+    const searchCacheItems = useSelector(store=> store.searchSuggestionsCache.cache)
+
     useEffect(()=>{
         fetchPopularCuisines()
     },[])
     useEffect(()=>{
 
+        //debouncing for better performance
+       const timeout = setTimeout(()=>{
         if(searchText.length>1) 
             fetchSuggestions()
         else if(searchText.length==0)
             setFilterFlag(false)
+       },200)
+
+       return() => clearTimeout(timeout)
+
 
     },[searchText])
 
     const fetchSuggestions = async() =>{
         setFilterFlag(true)
-        const SEARCH_SUGGESTIONS = `https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/search/suggest?lat=12.9715987&lng=77.5945627&str=${searchText}&trackingId=undefined`
-        const data = await fetch(SEARCH_SUGGESTIONS)
-        const jsonData = await data.json()
-        // console.log(jsonData?.data?.suggestions)
-        setSearchResults(jsonData?.data?.suggestions)
+        if(searchCacheItems[searchText]){
+            setSearchResults(searchCacheItems[searchText])
+        }
+        else{
+            const SEARCH_SUGGESTIONS = `https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/search/suggest?lat=12.9715987&lng=77.5945627&str=${searchText}&trackingId=undefined`
+            const data = await fetch(SEARCH_SUGGESTIONS)
+            const jsonData = await data.json()
+
+            //add to cache
+            const obj = {}
+            obj[searchText] = jsonData?.data?.suggestions
+            dispatch(addToSearchCacheSlice({
+                [searchText] : jsonData?.data?.suggestions
+            }))    
+            setSearchResults(jsonData?.data?.suggestions)
+        }
     }
     const fetchPopularCuisines = async() => {
         const data = await fetch(SEARCH_POPULAR_CUISINES_SUGGESTIONS)
