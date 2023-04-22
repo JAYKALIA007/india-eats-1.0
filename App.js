@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import ReactDOM  from 'react-dom/client'
 import Header from './src/components/Header'
 import Body from './src/components/Body'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import SearchBar from './src/components/SearchBar';
-import RestaurantMenu from './src/components/RestaurantMenu';
 import { Provider } from 'react-redux'
 import store from './src/utils/store';
+import useOnline from './src/utils/useOnline';
+import OfflineMessage from './src/components/OfflineMessage';
+import ShimmerSearchPage from './src/components/ShimmerSearchPage';
+import ShimmerMenuPage from './src/components/ShimmerMenuPage';
+
+
+//lazy load the following components
+const SearchBar = lazy(()=>import('./src/components/SearchBar'))
+const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
 /**
  * 
  * APP LAYOUT
@@ -26,12 +33,15 @@ import store from './src/utils/store';
  *      - Reference Links
  * 
  */
-const AppLayout = () => (
-    <>
-        <Header />
-        <Outlet/>
-    </>
-)
+const AppLayout = () => {
+    const isOnline = useOnline()
+    return(
+        <>
+            <Header />
+            {isOnline ? <Outlet /> : <OfflineMessage />}   
+        </>
+    )
+}
 const appRouter = createBrowserRouter([
     {
         path: '/',
@@ -44,11 +54,15 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/search',
-                element : <SearchBar />
+                element : <Suspense fallback={<ShimmerSearchPage />} >
+                    <SearchBar />
+                </Suspense>
             },
             {
                 path : '/restaurants/:slug',
-                element: <RestaurantMenu />
+                element: <Suspense fallback={<ShimmerMenuPage/>} >
+                    <RestaurantMenu />
+                </Suspense>
             }
         ]
     }

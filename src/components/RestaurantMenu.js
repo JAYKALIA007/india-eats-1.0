@@ -5,6 +5,7 @@ import RestaurantInfo from './RestaurantInfo'
 import RestaurantMenuItems from './RestaurantMenuItems'
 import RestaurantMenuSections from './RestaurantMenuSections'
 import ShimmerCardMenuPage from './ShimmerCardMenuPage'
+import ShimmerMenuPage from './ShimmerMenuPage'
 
 const RestaurantMenu = () => {
     useEffect(() =>{
@@ -19,12 +20,7 @@ const RestaurantMenu = () => {
 
     return(
         menu.length === 0 ? ( 
-        <div className=' mx-24 flex flex-wrap' >
-            <div className='mx-8 mt-10 my-2 h-4 bg-slate-100 w-full ' ></div>
-            <div className='mx-8 my-2 h-4 bg-slate-100 w-full ' ></div>
-            <ShimmerCardMenuPage />
-            <ShimmerCardMenuPage />
-        </div>
+        <ShimmerMenuPage />
      ) : (
         <div className=' w-3/5 mx-auto' >
                         <RestaurantInfo {...menu[0]?.card?.card?.info} />

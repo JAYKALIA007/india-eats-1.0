@@ -2,9 +2,12 @@ import React from 'react'
 import { MENU_ITEMS_IMAGE_CDN_URL } from '../../constants'
 import { BsCircleFill } from 'react-icons/bs'
 import { TiArrowSortedUp } from 'react-icons/ti'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../utils/cartSlice'
 const RestaurantMenuItems = ({data, title}) => {
-    console.log(data)
-    if(!data) return null
+  if(!data) return null
+  // console.log(data)
+  const dispatch = useDispatch()
     const displayItems = data.map(item=>(
       <div className='my-10 [&:not(:last-child)]:border-b border-slate-200' key={item?.card.info?.id} >
         <div className='w-full flex' >
@@ -18,8 +21,18 @@ const RestaurantMenuItems = ({data, title}) => {
           </div>
           <div className='w-1/4 py-8'>
             {item?.card?.info?.imageId &&
-              <img className='h-28 w-28 mx-auto rounded-md shadow-sm' src={`${MENU_ITEMS_IMAGE_CDN_URL}${item?.card?.info?.imageId}`} alt={item?.card?.info?.name} />
+                <img className='h-28 w-32 mx-auto rounded-md shadow-sm' src={`${MENU_ITEMS_IMAGE_CDN_URL}${item?.card?.info?.imageId}`} alt={item?.card?.info?.name} />
             }
+            <div className='text-center relative bottom-7 ' >
+                  <button 
+                      className='bg-white shadow-lg  w-24 p-2 rounded-md text-green-600 font-bold text-sm ' 
+                      onClick={()=>{
+                        dispatch(addToCart(item?.card?.info))
+                      }}
+                    >
+                    ADD
+                  </button>
+            </div>
           </div>
         </div>
       </div>

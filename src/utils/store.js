@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchSuggestionsCacheSlice from "./searchSuggestionsCacheSlice";
+import cartSlice from "./cartSlice";
 const store = configureStore({
     reducer:{
-        searchSuggestionsCache : searchSuggestionsCacheSlice
+        searchSuggestionsCache : searchSuggestionsCacheSlice,
+        cart : cartSlice
     }
 })
 
