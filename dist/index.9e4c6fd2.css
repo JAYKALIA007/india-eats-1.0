@@ -488,6 +488,14 @@ img, video {
   width: 100%;
 }
 
+.w-4 {
+  width: 1rem;
+}
+
+.w-\[20px\] {
+  width: 20px;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

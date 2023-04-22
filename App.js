@@ -9,11 +9,11 @@ import useOnline from './src/utils/useOnline';
 import OfflineMessage from './src/components/OfflineMessage';
 import ShimmerSearchPage from './src/components/ShimmerSearchPage';
 import ShimmerMenuPage from './src/components/ShimmerMenuPage';
-
-
+import Cart from './src/components/Cart';
+import RestaurantMenu from './src/components/RestaurantMenu';
 //lazy load the following components
 const SearchBar = lazy(()=>import('./src/components/SearchBar'))
-const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
+// const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
 /**
  * 
  * APP LAYOUT
@@ -60,9 +60,14 @@ const appRouter = createBrowserRouter([
             },
             {
                 path : '/restaurants/:slug',
-                element: <Suspense fallback={<ShimmerMenuPage/>} >
-                    <RestaurantMenu />
-                </Suspense>
+                element: <RestaurantMenu />
+                // <Suspense fallback={<ShimmerMenuPage/>} >
+                //     <RestaurantMenu />
+                // </Suspense>
+            },
+            {
+                path: '/cart',
+                element: <Cart />
             }
         ]
     }

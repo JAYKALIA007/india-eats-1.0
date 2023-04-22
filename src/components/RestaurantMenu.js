@@ -17,14 +17,13 @@ const RestaurantMenu = () => {
     // console.log(resId)
     const menu = useFetchMenu(resId)
     if(!menu) return null
-
     return(
         menu.length === 0 ? ( 
         <ShimmerMenuPage />
      ) : (
         <div className=' w-3/5 mx-auto' >
                         <RestaurantInfo {...menu[0]?.card?.card?.info} />
-                        <RestaurantMenuSections {...menu[2]?.groupedCard?.cardGroupMap?.REGULAR}  />
+                        <RestaurantMenuSections {...menu[2]?.groupedCard?.cardGroupMap?.REGULAR} restaurantName={menu[0]?.card?.card?.info?.name} />
         </div>
      ))
 }
