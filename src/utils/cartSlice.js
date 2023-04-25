@@ -6,9 +6,62 @@ const cartSlice = createSlice({
     },
     reducers:{
         addToCart: (state,action) => {
-            console.log(action.payload)
-            // state.cart.push(action.payload)
-            state.cartInfo = action.payload
+            // state.cartInfo = action.payload
+            const { resName, itemName, itemPrice } = action.payload
+
+            if(Object.keys(state.cartInfo).length === 0)
+            {
+                let cartInfoObj = {} 
+                let items = [] 
+                let itemObj = {}
+                itemObj.name = itemName
+                itemObj.count = 1
+                itemObj.price = itemPrice
+                items.push(itemObj)
+                cartInfoObj.restaurantName = resName
+                cartInfoObj.items =  items
+
+                state.cartInfo = cartInfoObj
+            }
+            else{
+                if(resName == state.cartInfo?.restaurantName){
+                    let cartInfoObj = JSON.parse(JSON.stringify((state.cartInfo)))
+                    let itemFoundInArrayFlag = 0;
+                    let obj = cartInfoObj?.items.find((item, i) => {
+                        if (item.name == itemName) {
+                        cartInfoObj?.items[i] = { name: item.name, count: item.count + 1, price : item.price };
+                            itemFoundInArrayFlag = 1
+                            return true; // stop searching
+                        }
+                    });
+
+                    if(itemFoundInArrayFlag == 0){
+                    let itemObj = {}
+                    itemObj.name = itemName
+                    itemObj.count = 1
+                    itemObj.price = itemPrice
+                    cartInfoObj?.items.push(itemObj)
+                    }
+
+                    state.cartInfo = cartInfoObj
+                }
+                else{
+                    console.log('show a popup saying items already in cart. are you sure you want to reset')
+
+                    let cartInfoObj = {} 
+                    let items = [] 
+                    let itemObj = {}
+                    itemObj.name = itemName
+                    itemObj.count = 1
+                    itemObj.price = itemPrice
+                    items.push(itemObj)
+                    cartInfoObj.restaurantName = resName
+                    cartInfoObj.items =  items
+
+                    state.cartInfo = cartInfoObj
+                }
+            }
+
         },
         removeFromcart: (state,action) => {
 
@@ -18,53 +71,12 @@ const cartSlice = createSlice({
             // if (index > -1) { // only splice array when item is found
             // array.splice(index, 1); // 2nd parameter means remove one item only
             // }
+        },
+        emptyCart: (state)=>{
+            state.cartInfo = {}
         }
     }
 })
 
 export default cartSlice.reducer 
-export const { addToCart, removeFromCart }  = cartSlice.actions
-
-
-// let {restaurantName, itemName} = action.payload
-//             console.log(restaurantName, itemName)
-//             if(Object.keys(state.cartInfo).length === 0)
-//             {
-//                 console.log('cart is empty')
-//                 let cartInfoObj = {} 
-
-//                 let itemObj = {}
-//                 itemObj[itemName] = 1
-                
-//                 cartInfoObj.restaurantName = restaurantName
-//                 cartInfoObj.items =  itemObj
-
-//                 state.cartInfo = cartInfoObj
-
-//                 console.log(state.cartInfo)
-//             }
-//             else{
-//                 console.log('hellos')
-//                 if(restaurantName == cartInfo?.restaurantName){
-//                     if(cartInfo.items[itemName])console.log('item already present in cart')
-//                     else {
-//                       console.log('item not present in cart')
-//                       cartInfo.items[itemName] = 1
-//                     }
-//                     // cartInfo.items[itemName] = (cartInfo.items[itemName] + 1 ) || 1  
-//                   }
-//                   else{
-//                     console.log('show a popup saying items already in cart. are you sure you want to reset')
-//                     let cartInfoObj = {} 
-
-//                     let itemObj = {}
-//                     itemObj[itemName] = 1
-                    
-//                     cartInfoObj.restaurantName = restaurantName
-//                     cartInfoObj.items =  itemObj
-
-//                     state.cartInfo = cartInfoObj
-
-//                     console.log(state.cartInfo)
-//                   }
-//             }
+export const { addToCart, removeFromCart, emptyCart }  = cartSlice.actions
