@@ -1,13 +1,14 @@
 import { useSelector } from 'react-redux'
 import CartItems from './CartItems'
 import { Link } from 'react-router-dom'
+import { EMPTY_CART_IMAGE_CDN_URL } from '../../constants'
 const Cart = () => {
     const cartItems = useSelector(store =>  store.cart.cartInfo)
 
     const { restaurantName, items } = cartItems
 
     const emptyCartMessage = <div className='text-center mt-20 ' >
-      <img className='mx-auto h-80 ' src='https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0' alt='empty cart' />
+      <img className='mx-auto h-80 ' src={EMPTY_CART_IMAGE_CDN_URL} alt='empty cart' />
       <p className='text-xl font-semibold  text-gray-600 mt-5 ' >Your cart is empty</p>
       <p className='text-[#9DA0A9] my-1' >You can go to home page to view more restaurants</p>
       <Link to='/'  >

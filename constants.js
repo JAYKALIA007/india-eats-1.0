@@ -7,4 +7,5 @@ export const SEARCH_POPULAR_CUISINES_SUGGESTIONS = `https://corsproxy.io/?https:
 export const SEARCH_SUGGESTIONS_IMAGE_CDN_URL = `https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/`
 export const RESTAURANT_MENU_URL = `https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=`
 export const MENU_ITEMS_IMAGE_CDN_URL = `https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/`
-export const EMPTY_CART_IMAGE_CDN_URL = `https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2`
+export const EMPTY_CART_IMAGE_CDN_URL = `https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0`
+export const ERROR_PAGE_IMAGE_CDN_URL = `https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/connection_error_bsppck`

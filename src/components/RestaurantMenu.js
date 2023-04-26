@@ -42,7 +42,7 @@ const RestaurantMenu = () => {
                                     <div className='flex ' >
                                         <p>{`${cartItems?.items.length} Items `}</p> 
                                         <p className='mx-1' > | </p>
-                                        <p> {`${totalPrice}`}</p>
+                                        <p> {`₹ ${totalPrice}`}</p>
                                     </div>
                                     <p>VIEW CART <HiOutlineShoppingBag className='inline text-sm relative bottom-[2px] '  /> </p>
                                 </div>

@@ -14,7 +14,6 @@ const Navbar = () => {
         <Link to='/help' > <TfiHelpAlt className='inline mr-1   text-lg relative bottom-[2px] ' /> Help</Link>
         <Link to='/signin' ><HiOutlineUser className='inline  text-lg relative bottom-[2px] ' /> Sign In </Link>
         <Link to='/cart' ><HiOutlineShoppingBag className='inline text-lg relative bottom-[2px] ' /> {totalItemsCount > 0 ? totalItemsCount : <>Cart</>} </Link>
-
     </ul>
   )
 }

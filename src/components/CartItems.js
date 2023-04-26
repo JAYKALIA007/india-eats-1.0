@@ -24,7 +24,7 @@ const CartItems = ({data}) => {
                 <p className='text-[#9DA0A9]' >Extra charges may apply</p>
             </div>
             <div className='relative top-2 font-bold ' >
-                {totalPrice}
+                ₹ {totalPrice}
             </div>
         </div>
         <div className='text-right px-7 ' >

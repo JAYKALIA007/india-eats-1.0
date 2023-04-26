@@ -28,7 +28,6 @@ const RestaurantMenuItems = ({data, title, restaurantName}) => {
                       className='bg-white shadow-lg  w-24 p-2 rounded-md text-green-600 font-bold text-sm ' 
                       onClick={()=>{
                         dispatch(addToCart({resName: restaurantName , itemName : item?.card?.info?.name , itemPrice : item?.card?.info?.price ? item?.card?.info?.price/100 : item?.card?.info?.defaultPrice/100}))
-                        alert(`${item?.card?.info?.name} added to cart`)
                       }}
                     >
                     ADD

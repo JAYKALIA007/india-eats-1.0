@@ -11,6 +11,8 @@ import ShimmerSearchPage from './src/components/ShimmerSearchPage';
 import ShimmerMenuPage from './src/components/ShimmerMenuPage';
 import Cart from './src/components/Cart';
 import RestaurantMenu from './src/components/RestaurantMenu';
+import PageInDevelopment from './src/components/PageInDevelopment';
+import Error from './src/components/Error';
 //lazy load the following components
 const SearchBar = lazy(()=>import('./src/components/SearchBar'))
 // const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
@@ -46,7 +48,7 @@ const appRouter = createBrowserRouter([
     {
         path: '/',
         element: <AppLayout />,
-        errorElement: <p>Error Page</p>,
+        errorElement: <Error /> ,
         children: [
             {
                 path : '/',
@@ -68,6 +70,18 @@ const appRouter = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart />
+            },
+            {
+                path: '/offers',
+                element: <PageInDevelopment />
+            },
+            {
+                path: '/help',
+                element: <PageInDevelopment />
+            },
+            {
+                path: '/signin',
+                element: <PageInDevelopment />
             }
         ]
     }

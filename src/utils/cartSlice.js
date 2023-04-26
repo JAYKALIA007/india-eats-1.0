@@ -22,6 +22,7 @@ const cartSlice = createSlice({
                 cartInfoObj.items =  items
 
                 state.cartInfo = cartInfoObj
+                alert(`${itemName} added to cart`)
             }
             else{
                 if(resName == state.cartInfo?.restaurantName){
@@ -44,21 +45,24 @@ const cartSlice = createSlice({
                     }
 
                     state.cartInfo = cartInfoObj
+                    alert(`${itemName} added to cart`)
                 }
                 else{
-                    console.log('show a popup saying items already in cart. are you sure you want to reset')
+                    const ans = window.confirm('Are you sure you want to reset cart')
+                    if(ans){
+                        let cartInfoObj = {} 
+                        let items = [] 
+                        let itemObj = {}
+                        itemObj.name = itemName
+                        itemObj.count = 1
+                        itemObj.price = itemPrice
+                        items.push(itemObj)
+                        cartInfoObj.restaurantName = resName
+                        cartInfoObj.items =  items
 
-                    let cartInfoObj = {} 
-                    let items = [] 
-                    let itemObj = {}
-                    itemObj.name = itemName
-                    itemObj.count = 1
-                    itemObj.price = itemPrice
-                    items.push(itemObj)
-                    cartInfoObj.restaurantName = resName
-                    cartInfoObj.items =  items
-
-                    state.cartInfo = cartInfoObj
+                        state.cartInfo = cartInfoObj
+                        alert(`${itemName} added to cart`)
+                    }
                 }
             }
 
