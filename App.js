@@ -1,20 +1,20 @@
 import React, { lazy, Suspense } from 'react'
 import ReactDOM  from 'react-dom/client'
-import Header from './src/components/Header'
-import Body from './src/components/Body'
+import Header from './src/components/page_layout/Header'
+import Body from './src/components/page_layout/Body'
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Provider } from 'react-redux'
 import store from './src/utils/store';
 import useOnline from './src/utils/useOnline';
 import OfflineMessage from './src/components/OfflineMessage';
-import ShimmerSearchPage from './src/components/ShimmerSearchPage';
-import ShimmerMenuPage from './src/components/ShimmerMenuPage';
-import Cart from './src/components/Cart';
-import RestaurantMenu from './src/components/RestaurantMenu';
+import ShimmerSearchPage from './src/components/shimmer/ShimmerSearchPage';
+import ShimmerMenuPage from './src/components/shimmer/ShimmerMenuPage';
+import Cart from './src/components/cart/Cart';
+import RestaurantMenu from './src/components/menu/RestaurantMenu';
 import PageInDevelopment from './src/components/PageInDevelopment';
 import Error from './src/components/Error';
 //lazy load the following components
-const SearchBar = lazy(()=>import('./src/components/SearchBar'))
+const SearchBar = lazy(()=>import('./src/components/search/SearchBar'))
 // const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
 /**
  * 
