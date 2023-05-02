@@ -57,10 +57,17 @@ const SearchBar = () => {
     }
     if(!popularCuisines) return null
     const displayPopularCuisines = popularCuisines.map(cuisine => {
+        const itemName = decodeURI(cuisine?.action?.link.split('=')[1]).replace(" %26 ", " & ")
         return(
-            <div className='w-20 mx-2' key={cuisine?.id}>
+            <div className='w-20 mx-2 hover:cursor-pointer ' 
+                key={cuisine?.id} 
+                onClick={()=>{
+                    // console.log(itemName)
+                    setSearchText(itemName)
+                }} 
+            >
                 <img className='h-12 mb-4' src={`${IMAGE_CDN_URL}${cuisine?.imageId}`}  />
-                <p className='text-xs text-gray-500' >{decodeURI(cuisine?.action?.link.split('=')[1]).replace(" %26 ", " & ")}</p>
+                <p className='text-xs text-gray-500' >{itemName}</p>
             </div>
         )
     })
