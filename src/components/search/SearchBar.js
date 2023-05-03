@@ -59,14 +59,14 @@ const SearchBar = () => {
     const displayPopularCuisines = popularCuisines.map(cuisine => {
         const itemName = decodeURI(cuisine?.action?.link.split('=')[1]).replace(" %26 ", " & ")
         return(
-            <div className='w-20 mx-2 hover:cursor-pointer ' 
+            <div className='w-20  mx-2 hover:cursor-pointer ' 
                 key={cuisine?.id} 
                 onClick={()=>{
                     // console.log(itemName)
                     setSearchText(itemName)
                 }} 
             >
-                <img className='h-12 mb-4' src={`${IMAGE_CDN_URL}${cuisine?.imageId}`}  />
+                <img className='h-12 xl:h-10  mb-4' src={`${IMAGE_CDN_URL}${cuisine?.imageId}`}  />
                 <p className='text-xs text-gray-500' >{itemName}</p>
             </div>
         )
@@ -87,10 +87,10 @@ const SearchBar = () => {
             {popularCuisines.length === 0 ? <ShimmerSearchPage /> : filterFlag ? 
                     <SearchResultsList data={searchResults}  /> : (
                     <>
-                        <div className='w-3/5 inline-flex mt-10 text-xl font-extrabold ' >
+                        <div className='w-3/5  inline-flex mt-10 text-xl font-extrabold ' >
                             <span className='block text-left ' >Popular Cuisines</span>
                         </div>
-                        <div className='inline-flex mt-10' >
+                        <div className='inline-flex mt-10 w-[55%]'  >
                             { displayPopularCuisines}
                         </div>
                     </>  
