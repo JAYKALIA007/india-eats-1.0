@@ -66,7 +66,7 @@ const SearchBar = () => {
                     setSearchText(itemName)
                 }} 
             >
-                <img className='h-12 xl:h-10  mb-4' src={`${IMAGE_CDN_URL}${cuisine?.imageId}`}  />
+                <img className='h-12 lg:h-8 xl:h-10  mb-4' src={`${IMAGE_CDN_URL}${cuisine?.imageId}`}  />
                 <p className='text-xs text-gray-500' >{itemName}</p>
             </div>
         )
