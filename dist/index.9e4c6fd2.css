@@ -849,6 +849,16 @@ img, video {
   color: rgb(133 77 14 / var(--tw-text-opacity));
 }
 
+.text-yellow-100 {
+  --tw-text-opacity: 1;
+  color: rgb(254 249 195 / var(--tw-text-opacity));
+}
+
+.text-slate-100 {
+  --tw-text-opacity: 1;
+  color: rgb(241 245 249 / var(--tw-text-opacity));
+}
+
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -887,6 +897,48 @@ img, video {
   --tw-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 1536px) {
+  .\32 xl\:m-4 {
+    margin: 1rem;
+  }
+
+  .\32 xl\:m-2 {
+    margin: .5rem;
+  }
+
+  .\32 xl\:m-0 {
+    margin: 0;
+  }
+
+  .\32 xl\:m-\[1000px\] {
+    margin: 1000px;
+  }
+
+  .\32 xl\:m-6 {
+    margin: 1.5rem;
+  }
+
+  .\32 xl\:m-7 {
+    margin: 1.75rem;
+  }
+
+  .\32 xl\:m-5 {
+    margin: 1.25rem;
+  }
+
+  .\32 xl\:hidden {
+    display: none;
+  }
+
+  .\32 xl\:w-40 {
+    width: 10rem;
+  }
+
+  .\32 xl\:w-60 {
+    width: 15rem;
+  }
 }
 
 .\[\&\:not\(\:last-child\)\]\:border-b:not(:last-child) {

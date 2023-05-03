@@ -3,7 +3,7 @@ import { BsCircleFill } from 'react-icons/bs'
 import { TiArrowSortedUp } from 'react-icons/ti'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../utils/cartSlice'
-
+import { MdFastfood } from 'react-icons/md'
 const RestaurantMenuItems = ({data, title, restaurantName}) => {
   if(!data) return null
   // console.log(data)
@@ -20,8 +20,9 @@ const RestaurantMenuItems = ({data, title, restaurantName}) => {
             <p className='text-[#9DA0A9] mb-10 ' >{item?.card?.info?.description}</p>
           </div>
           <div className='w-1/4 py-8'>
-            {item?.card?.info?.imageId &&
-                <img className='h-28 w-32 mx-auto rounded-md shadow-sm' src={`${MENU_ITEMS_IMAGE_CDN_URL}${item?.card?.info?.imageId}`} alt={item?.card?.info?.name} />
+            {item?.card?.info?.imageId ?
+                <img className='h-28 w-32 mx-auto rounded-md shadow-sm' src={`${MENU_ITEMS_IMAGE_CDN_URL}${item?.card?.info?.imageId}`} alt={item?.card?.info?.name} /> :
+                <MdFastfood className='h-28 w-32 mx-auto rounded-md shadow-sm text-slate-100 ' />
             }
             <div className='text-center relative bottom-7 ' >
                   <button 
