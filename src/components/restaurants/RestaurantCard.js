@@ -4,7 +4,6 @@ import { FaStar } from "react-icons/fa";
 import { HiOutlineReceiptPercent } from "react-icons/hi2"
 const RestaurantCard = (props) => {
     // console.log(data)
-    const [ color, setColor ] = useState('')
     if(!props) return null
     const { name, uuid, avgRating, cloudinaryImageId, costForTwoString, deliveryTime, cuisines, aggregatedDiscountInfo } = props
     const discountString = aggregatedDiscountInfo?.descriptionList[0]?.meta
