@@ -8,7 +8,7 @@ const Navbar = () => {
   let totalItemsCount = 0
   cartItems?.items && cartItems?.items.map(item=> totalItemsCount += item.count)
   return (
-    <ul className='flex justify-between relative top-2 text-base ' >
+    <ul className='flex justify-between relative top-2 text-base' >
         <Link to='/search' ><HiMagnifyingGlass className='inline  mr-1  text-lg  relative bottom-[2px] ' />Search</Link>
         <Link to='/offers' ><HiOutlineReceiptPercent className='inline  mr-1  text-lg  relative bottom-[2px] ' />Offers</Link>
         <Link to='/help' > <TfiHelpAlt className='inline mr-1   text-lg relative bottom-[2px] ' /> Help</Link>

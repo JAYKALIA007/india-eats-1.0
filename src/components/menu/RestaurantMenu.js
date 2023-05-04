@@ -38,7 +38,7 @@ const RestaurantMenu = () => {
                         <RestaurantMenuSections {...menu[2]?.groupedCard?.cardGroupMap?.REGULAR} restaurantName={menu[0]?.card?.card?.info?.name} />
                         {showFooter && (
                             <Link to='/cart' >
-                                <div className='bg-[#5FB246] p-4  sticky bottom-0 mr-12 text-white flex justify-between text-sm font-bold  ' >
+                                <div className='bg-[#5FB246] p-4  sticky bottom-0 mr-12 text-white flex justify-between text-sm font-bold  lg:w-11/12 lg:ml-3' >
                                     <div className='flex ' >
                                         <p>{`${cartItems?.items.length} Items `}</p> 
                                         <p className='mx-1' > | </p>
