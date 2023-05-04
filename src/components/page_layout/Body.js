@@ -58,13 +58,13 @@ const Body = () => {
 
   return (
     restaurantsData.length === 0 ? <ShimmerCardContainer numberOfCards={12}/> : (
-      <div className='m-8 p-2 flex flex-wrap lg:mx-8 lg:my-0 xl:m-0 2xl:m-2 ' >
-          {restaurantsData.map(restaurant => (
-            <Link to={`/restaurants/${restaurant?.slugs?.restaurant}-${restaurant?.id}`} key={restaurant?.id}>
-              <RestaurantCard key={restaurant?.id} {...restaurant} />
-            </Link>
-          ))}
-          {loading && (<ShimmerCard/>)}
+      <div className=' mt-10 w-[100%] flex flex-wrap mx-auto ' >
+        {restaurantsData.map(restaurant => (
+          <Link className=' w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'  to={`/restaurants/${restaurant?.slugs?.restaurant}-${restaurant?.id}`} key={restaurant?.id}>
+            <RestaurantCard key={restaurant?.id} {...restaurant} />
+          </Link>
+        ))}
+        {loading && (<ShimmerCard/>)}
       </div>
     )
   )
