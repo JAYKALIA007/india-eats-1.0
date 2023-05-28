@@ -75,7 +75,7 @@ const SearchBar = () => {
         <div className=" text-center mt-16" >
             <input type="text" 
                 placeholder="Search for restaurants and food" 
-                className="border border-black w-3/5 rounded-sm p-3 text-lg " 
+                className="border border-black w-3/5 rounded-sm p-3 text-sm sm:text-lg " 
                 onChange={(e)=>{
                     setSearchText(e.target.value)
                 }}
@@ -90,7 +90,7 @@ const SearchBar = () => {
                         <div className='w-3/5  inline-flex mt-10 text-xl font-extrabold ' >
                             <span className='block text-left ' >Popular Cuisines</span>
                         </div>
-                        <div className='inline-flex mt-10 w-[55%]'  >
+                        <div className='inline-flex mt-10 w-[55%] overflow-x-scroll'  >
                             { displayPopularCuisines}
                         </div>
                     </>  
