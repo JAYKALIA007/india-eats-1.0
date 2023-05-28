@@ -7,9 +7,9 @@ const RestaurantInfo = ({name,cuisines,areaName,totalRatingsString,costForTwoMes
   // console.log(name)
   return (
     <div className="my-12 text-[#82838F] text-sm " >
-      <div className="flex justify-between  border-b border-gray-400 border-dashed	mr-20  " >
-        <div>
-          <p className="text-[#282C3F] text-2xl font-bold my-2 ">{name}</p>
+      <div className="flex justify-between  border-b border-gray-400 border-dashed	mr-20 align-baseline" >
+        <div className='h-full' >
+          <p className="text-[#282C3F] text-2xl font-bold my-2">{name}</p>
           <p>{cuisines.join(', ')}</p>
           <p>{areaName}</p>
           { expectationNotifiers && 
@@ -17,7 +17,7 @@ const RestaurantInfo = ({name,cuisines,areaName,totalRatingsString,costForTwoMes
           }
           
         </div>
-        <div className='border border-gray-300 h-24 p-1 w-20 text-center rounded-md shadow-sm ' >   
+        <div className='border border-gray-300 h-24 p-1 w-20 text-center rounded-md shadow-sm relative top-4 ' >   
           <p className='text-[#3E9B6D] font-bold text-base my-2' ><FaStar className='inline relative bottom-[2px] mr-1 ' />{avgRatingString}</p>
           <hr className='border border-slate-200 ' />
           <p className='text-xs tracking-tighter my-2 ' >{totalRatingsString}</p>
@@ -27,18 +27,17 @@ const RestaurantInfo = ({name,cuisines,areaName,totalRatingsString,costForTwoMes
         <p className="mr-2" ><CgTimelapse className='inline mr-2 text-2xl relative bottom-[2px] ' />{sla?.slaString}</p>
         <p className="mr-2" ><HiOutlineCurrencyRupee className='inline mr-2 text-2xl relative bottom-[2px] ' />{costForTwoMessage}</p>
       </div>
-      <div className="flex" >
+      <div className="md:flex" >
         {aggregatedDiscountInfo?.descriptionList.map(item=>{
           const metaData = item?.meta.split('|')
           if(metaData === undefined) {return null}
           return(
-          <div className="border-2 border-gray-200 w-1/4 mr-2 p-2 my-2 rounded-md " key={item?.meta}  >
-              <p className="font-bold"  >{metaData[0]}</p>
+          <div className="border-2 border-gray-200 mr-2 p-2 my-2 rounded-md w-max " key={item?.meta}  >
+              <p className="font-bold "  >{metaData[0]}</p>
               <p className=" uppercase tracking-tighter	 "  >{metaData[1]}</p>
           </div>
         )})}
       </div>
-      
     </div>
   )
 }

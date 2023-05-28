@@ -19,7 +19,7 @@ const RestaurantMenuItems = ({data, title, restaurantName}) => {
             </div>
             <p className='text-[#9DA0A9] mb-10 ' >{item?.card?.info?.description}</p>
           </div>
-          <div className='w-1/4 py-8'>
+          <div className='w-1/4 py-8 relative top-12  sm:top-8  md:top-5 '>
             {item?.card?.info?.imageId ?
                 <img className='h-28 w-32 mx-auto rounded-md shadow-sm' src={`${MENU_ITEMS_IMAGE_CDN_URL}${item?.card?.info?.imageId}`} alt={item?.card?.info?.name} /> :
                 <MdFastfood className='h-28 w-32 mx-auto rounded-md shadow-sm text-slate-100 ' />

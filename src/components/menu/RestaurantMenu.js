@@ -33,12 +33,12 @@ const RestaurantMenu = () => {
         menu.length === 0 ? ( 
         <ShimmerMenuPage />
      ) : (
-        <div className=' w-3/5 mx-auto' >
+        <div className=' w-full sm:w-4/5 lg:w-3/5 px-10 sm:p-0  sm:mx-auto' >
                         <RestaurantInfo {...menu[0]?.card?.card?.info} />
                         <RestaurantMenuSections {...menu[2]?.groupedCard?.cardGroupMap?.REGULAR} restaurantName={menu[0]?.card?.card?.info?.name} />
                         {showFooter && (
                             <Link to='/cart' >
-                                <div className='bg-[#5FB246] p-4  sticky bottom-0 mr-12 text-white flex justify-between text-sm font-bold  lg:w-11/12 lg:ml-3' >
+                                <div className='bg-[#5FB246] p-4  sticky bottom-0 mr-12 text-white flex justify-between text-sm font-bold  w-11/12 ml-3' >
                                     <div className='flex ' >
                                         <p>{`${cartItems?.items.length} Items `}</p> 
                                         <p className='mx-1' > | </p>

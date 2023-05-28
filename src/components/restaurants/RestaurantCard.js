@@ -4,13 +4,13 @@ import { FaStar } from "react-icons/fa";
 import { HiOutlineReceiptPercent } from "react-icons/hi2"
 const RestaurantCard = (props) => {
     // console.log(data)
-    const [ color, setColor ] = useState('')
     if(!props) return null
     const { name, uuid, avgRating, cloudinaryImageId, costForTwoString, deliveryTime, cuisines, aggregatedDiscountInfo } = props
     const discountString = aggregatedDiscountInfo?.descriptionList[0]?.meta
     
   return (
-    <div className='w-80 p-4 m-8 lg:mx-3 lg:w-72 2xl:m-7 hover:border border-gray-300 text-sm text-gray-600 font-extralight cursor-pointer hover:shadow-lg ' >
+    // <div className='w-80 p-4 m-8 lg:mx-3 lg:w-72 2xl:m-7 hover:border border-gray-300 text-sm text-gray-600 font-extralight cursor-pointer hover:shadow-lg ' >
+    <div className='md:w-[90%] xl:w-[85%] mx-auto p-8 xl:px-4 xl:py-8  hover:border border-gray-300 text-sm text-gray-600 font-extralight cursor-pointer hover:shadow-lg' >
         <img className='w-full' src={`${IMAGE_CDN_URL}${cloudinaryImageId}`} alt={name}  />
         <p className='mt-4 text-xl font-normal text-gray-800 ' >{name}</p>
         <p className='my-2' >{cuisines.join(', ')}</p>
@@ -37,7 +37,6 @@ const RestaurantCard = (props) => {
                         </div>
                     )
                 }
-                {/* <p className='text-yellow-800 font-normal my-2 inline' >{aggregatedDiscountInfo?.descriptionList[0]?.meta}</p> */}
             </>
             
         )}
