@@ -5,6 +5,10 @@ A food ordering app using React, Redux toolkit, Parcel, TailwindCSS which uses r
 
 - Implemented custom shimmer effects for different pages as loading animations for improving the UX.
 
+- Created custom hooks for various to make code modular
+
+- Used react router dom for routing 
+
 
 #### P.S.
 I've not yet implemented checkout, auth features.
