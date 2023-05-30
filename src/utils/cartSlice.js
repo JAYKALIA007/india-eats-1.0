@@ -30,7 +30,7 @@ const cartSlice = createSlice({
                     let itemFoundInArrayFlag = 0;
                     let obj = cartInfoObj?.items.find((item, i) => {
                         if (item.name == itemName) {
-                        cartInfoObj?.items[i] = { name: item.name, count: item.count + 1, price : item.price };
+                        cartInfoObj.items[i] = { name: item.name, count: item.count + 1, price : item.price };
                             itemFoundInArrayFlag = 1
                             return true; // stop searching
                         }
