@@ -6,7 +6,7 @@ const SearchResultCard = ({text, cloudinaryId, tagToDisplay}) => {
     // console.log(data)
 
   return (
-    <div className='p-4 flex hover:bg-slate-100 ' >
+    <div data-testid='search-result-card' className='p-4 flex hover:bg-slate-100 ' >
         <img className='h-20 rounded-md'  src={`${SEARCH_SUGGESTIONS_IMAGE_CDN_URL}${cloudinaryId}`} alt={text}  />
         <div className='text-left py-4 mx-2' >
             <p className='font-light' >{text}</p>

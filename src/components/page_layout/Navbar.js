@@ -26,7 +26,7 @@ const Navbar = () => {
           <Link to='/offers' ><HiOutlineReceiptPercent className='inline  mr-1  text-lg  relative bottom-[2px] ' />Offers</Link>
           <Link to='/help' > <TfiHelpAlt className='inline mr-1   text-lg relative bottom-[2px] ' /> Help</Link>
           <Link to='/signin' ><HiOutlineUser className='inline  text-lg relative bottom-[2px] ' /> Sign In </Link>
-          <Link to='/cart' ><HiOutlineShoppingBag className='inline text-lg relative bottom-[2px] ' /> {totalItemsCount > 0 ? totalItemsCount : <>Cart</>} </Link>
+          <Link to='/cart' data-testid="cart-count" ><HiOutlineShoppingBag className='inline text-lg relative bottom-[2px] '  /> {totalItemsCount > 0 ? totalItemsCount : <>Cart</>}</Link>
       </ul>
       <div className='md:hidden'  >
         <div id="myNav" className="overlay h-full w-0 fixed z-10 left-0 top-0 bg-[#000000e6] overflow-x-hidden">
@@ -36,7 +36,7 @@ const Navbar = () => {
             <Link to='/offers' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} >Offers</Link>
             <Link to='/help' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} > Help</Link>
             <Link to='/signin' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} > Sign In </Link>
-            <Link to='/cart' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} >{totalItemsCount > 0 ? totalItemsCount : <>Cart</>} </Link>
+            <Link to='/cart' data-testid='cart-count' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} >{totalItemsCount > 0 ? totalItemsCount : <>Cart</>}</Link>
           </div>
         </div>
         <RxHamburgerMenu className='text-2xl relative top-3  ' onClick={()=>{

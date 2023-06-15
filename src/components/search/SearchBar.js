@@ -59,7 +59,7 @@ const SearchBar = () => {
     const displayPopularCuisines = popularCuisines.map(cuisine => {
         const itemName = decodeURI(cuisine?.action?.link.split('=')[1]).replace(" %26 ", " & ")
         return(
-            <div className='w-20  mx-2 hover:cursor-pointer ' 
+            <div data-testid='cuisines-list' className='w-20  mx-2 hover:cursor-pointer ' 
                 key={cuisine?.id} 
                 onClick={()=>{
                     // console.log(itemName)
@@ -74,6 +74,7 @@ const SearchBar = () => {
     return(
         <div className=" text-center mt-16" >
             <input type="text" 
+                data-testid='search-bar'
                 placeholder="Search for restaurants and food" 
                 className="border border-black w-3/5 rounded-sm p-3 text-sm sm:text-lg " 
                 onChange={(e)=>{
@@ -88,7 +89,7 @@ const SearchBar = () => {
                     <SearchResultsList data={searchResults}  /> : (
                     <>
                         <div className='w-3/5  inline-flex mt-10 text-xl font-extrabold ' >
-                            <span className='block text-left ' >Popular Cuisines</span>
+                            <span data-testid='popular-cuisines-text' className='block text-left ' >Popular Cuisines</span>
                         </div>
                         <div className='inline-flex mt-10 w-[55%] overflow-x-scroll'  >
                             { displayPopularCuisines}
