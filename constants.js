@@ -9,3 +9,5 @@ export const RESTAURANT_MENU_URL = `https://corsproxy.io/?https://www.swiggy.com
 export const MENU_ITEMS_IMAGE_CDN_URL = `https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/`
 export const EMPTY_CART_IMAGE_CDN_URL = `https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0`
 export const ERROR_PAGE_IMAGE_CDN_URL = `https://corsproxy.io/?https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/connection_error_bsppck`
+export const HELP_PAGE_DATA_URL = `https://corsproxy.io/?https://www.swiggy.com/dapi/support`
+export const HELP_PAGE_ACCORDION_LIST_DATA = `https://corsproxy.io/?https://www.swiggy.com/dapi/support/issues/`
