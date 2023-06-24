@@ -4,26 +4,32 @@ import RestaurantCard from '../restaurants/RestaurantCard'
 import { RESTAURANT_DATA_URL } from '../../../constants'
 import ShimmerCard from '../shimmer/ShimmerCard'
 import ShimmerCardContainer from '../shimmer/ShimmerCardContainer'
-
+import useGeoLocation from '../../utils/useGeoLocation'
 const Body = () => {
 
    const [ restaurantsData , setRestaurantsData ] = useState([])
    const [ offset , setOffset ] = useState(-1)
    const [loading, setLoading] = useState(true);
 
+   const currentLocation = useGeoLocation()
+   console.log(currentLocation)
+
     useEffect(()=>{
       fetchRestaurantData() 
-    },[offset])
+    },[offset, currentLocation])
 
     const fetchRestaurantData = async() => {
         if(offset < 0 ){
           //fetch 1st 15 restaurants 
-          const data = await fetch(RESTAURANT_DATA_URL)
-          const jsonData = await data.json()
-          const modifiedData = jsonData?.data?.cards[2]?.data?.data?.cards.map(card => {
-            return card?.data
-          })
-          setRestaurantsData(modifiedData)
+          if(currentLocation.latitude !== ''|| currentLocation.longitude !== ''){
+            const myUrl = `https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=${currentLocation.latitude}&lng=${currentLocation.longitude}&page_type=DESKTOP_WEB_LISTING`
+            const data = await fetch(myUrl)
+            const jsonData = await data.json()
+            const modifiedData = jsonData?.data?.cards[2]?.data?.data?.cards.map(card => {
+              return card?.data
+            })
+            setRestaurantsData(modifiedData)
+          }
         }
         else{
           //fetch restaurant data for infinite scrolling
