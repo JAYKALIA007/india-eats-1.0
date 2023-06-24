@@ -13,9 +13,9 @@ import Cart from './src/components/cart/Cart';
 import RestaurantMenu from './src/components/menu/RestaurantMenu';
 import PageInDevelopment from './src/components/PageInDevelopment';
 import Error from './src/components/Error';
+import SearchBar from './src/components/search/SearchBar';
 // import Help from './src/components/support/Help';
 //lazy load the following components
-const SearchBar = lazy(()=>import('./src/components/search/SearchBar'))
 const Help = lazy(()=>import('./src/components/support/Help'))
 // const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
 /**
