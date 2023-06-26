@@ -639,10 +639,10 @@ const Help = ()=>{
             className: "mx-auto p-5 w-11/12 ",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: " sticky top-20 z-10 p-10 px-20 text-white bg-[#37718E]",
+                    className: " sticky top-20 sm:z-10 p-4 lg:p-10 lg:px-20 text-white bg-[#37718E]",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
-                            className: "text-4xl font-semibold",
+                            className: "text-lg lg:text-4xl font-semibold",
                             children: "Help & Support"
                         }, void 0, false, {
                             fileName: "src/components/support/Help.js",
@@ -650,7 +650,7 @@ const Help = ()=>{
                             columnNumber: 17
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                            className: "text-lg",
+                            className: "text-xs lg:text-lg",
                             children: "Let's take a step ahead and help you better."
                         }, void 0, false, {
                             fileName: "src/components/support/Help.js",
@@ -664,17 +664,17 @@ const Help = ()=>{
                     columnNumber: 13
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "flex justify-center min-h-screen bg-white p-10 m-2 shadow-lg ",
+                    className: " lg:flex justify-center min-h-screen bg-white lg:p-10 m-2 shadow-lg ",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: " self-start sticky top-48 min-h-screen bg-slate-200 w-1/4 m-4 py-4 hover:cursor-pointer",
+                            className: "self-start sticky top-36 lg:top-48 lg:min-h-screen flex justify-around lg:inline-block bg-slate-200 lg:w-1/4 lg:m-4 py-4 hover:cursor-pointer",
                             children: sideNavList.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                     onClick: ()=>{
                                         setSelectedOption(item?.type);
                                         setTileHeader(item?.title);
                                     },
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: ` text-[#535665] hover:font-semibold m-2 mx-10 mr-0 py-7 pl-10 ${selectedOption === item.type ? " bg-white font-semibold" : ""}`,
+                                        className: ` text-[#535665] text-sm lg:text-base hover:font-semibold m-2 lg:mx-10 lg:mr-0 p-1 rounded-md lg:rounded-none lg:py-7 lg:pl-10 ${selectedOption === item.type ? " bg-white font-semibold" : ""}`,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                             children: item.title
                                         }, void 0, false, {
@@ -703,10 +703,10 @@ const Help = ()=>{
                             columnNumber: 17
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: " w-3/4 m-4 p-2",
+                            className: " lg:w-3/4 m-4 p-2",
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    className: "text-2xl font-semibold mt-10 mb-5",
+                                    className: " text-xl lg:text-2xl font-semibold mt-2 lg:mt-10 mb-5",
                                     children: tileHeader
                                 }, void 0, false, {
                                     fileName: "src/components/support/Help.js",
@@ -825,13 +825,13 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _hi2 = require("react-icons/hi2");
 const AccordionItem = ({ item , selectedIndex  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "border-b-2 border-gray-200 hover:cursor-pointer p-6 text-[#3D4152] font-light ",
+        className: " border-b lg:border-b-2 border-gray-200 hover:cursor-pointer py-4 lg:p-6 text-[#3D4152] font-light ",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "flex justify-between",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        className: "text-lg hover:text-orange-400 ",
+                        className: " text-xs lg:text-lg hover:text-orange-400 pr-1 lg:pr-0 ",
                         children: item.title
                     }, void 0, false, {
                         fileName: "src/components/support/AccordionItem.js",
@@ -854,7 +854,7 @@ const AccordionItem = ({ item , selectedIndex  })=>{
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: `text-sm w-4/5 ${selectedIndex !== item.id ? "hidden" : " my-5  "}`,
+                className: `text-xs  lg:text-sm w-11/12 lg:w-4/5 ${selectedIndex !== item.id ? "hidden" : " my-5  "}`,
                 children: [
                     (item.description || item.hyperLinkText) && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         className: `${item.description ? "text-[#3D4152]" : item.hyperLinkText ? "text-orange-400 font-semibold" : ""}`,

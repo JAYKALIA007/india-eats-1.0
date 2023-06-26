@@ -55,11 +55,11 @@ const Navbar = () => {
       </ul>
       <div className='md:hidden'  >
         <div id="myNav" className="overlay h-full w-0 fixed z-10 left-0 top-0 bg-[#000000e6] overflow-x-hidden">
-          <RxCross1 className=' text-2xl text-white absolute top-7 left-96'  onClick={()=>closeNav()}  />
+          <RxCross1 className=' text-2xl text-white absolute top-7 left-[21rem] sm:left-96'  onClick={()=>closeNav()}  />
           <div className='relative top-1/4 w-full text-center mt-30px'>
             <Link to='/search' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} >Search</Link>
             <Link to='/offers' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} >Offers</Link>
-            <Link to='/help' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} > Help</Link>
+            <Link to='/support' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} > Help</Link>
             <Link to='/signin' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} > Sign In </Link>
             <Link to='/cart' className=' text-[#818181] p-[20px] no-underline	 text-3xl block transition  hover:text-[#f1f1f1] focus:text-[#f1f1f1] ' onClick={()=>closeNav()} >{totalItemsCount > 0 ? totalItemsCount : <>Cart</>} </Link>
           </div>
