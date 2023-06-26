@@ -7,14 +7,16 @@ import { Provider } from 'react-redux'
 import store from './src/utils/store';
 import useOnline from './src/utils/useOnline';
 import OfflineMessage from './src/components/OfflineMessage';
-import ShimmerSearchPage from './src/components/shimmer/ShimmerSearchPage';
-import ShimmerMenuPage from './src/components/shimmer/ShimmerMenuPage';
+// import ShimmerSearchPage from './src/components/shimmer/ShimmerSearchPage';
+// import ShimmerMenuPage from './src/components/shimmer/ShimmerMenuPage';
 import Cart from './src/components/cart/Cart';
 import RestaurantMenu from './src/components/menu/RestaurantMenu';
 import PageInDevelopment from './src/components/PageInDevelopment';
 import Error from './src/components/Error';
+import SearchBar from './src/components/search/SearchBar';
+// import Help from './src/components/support/Help';
 //lazy load the following components
-const SearchBar = lazy(()=>import('./src/components/search/SearchBar'))
+const Help = lazy(()=>import('./src/components/support/Help'))
 // const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
 /**
  * 
@@ -56,9 +58,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/search',
-                element : <Suspense fallback={<ShimmerSearchPage />} >
-                    <SearchBar />
-                </Suspense>
+                element : <SearchBar />
             },
             {
                 path : '/restaurants/:slug',
@@ -76,8 +76,12 @@ const appRouter = createBrowserRouter([
                 element: <PageInDevelopment />
             },
             {
-                path: '/help',
-                element: <PageInDevelopment />
+                path: '/support',
+                element: (
+                    <Suspense fallback={<p>Loading page...</p>} >
+                        <Help />
+                    </Suspense>
+                )
             },
             {
                 path: '/signin',
