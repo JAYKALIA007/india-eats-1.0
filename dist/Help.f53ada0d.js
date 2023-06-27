@@ -633,13 +633,13 @@ const Help = ()=>{
             dispatch((0, _supportPageCacheSlice.addDataToAccordion)(tempObjToStoreAccordionData));
         } else setAccordionList(cachedAccordionData[selectedOption]);
     };
-    return sideNavList.length === 0 ? "Loading..." : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: " bg-[#37718E] tracking-wide",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "mx-auto p-5 w-11/12 ",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: " sticky top-20 sm:z-10 p-4 lg:p-10 lg:px-20 text-white bg-[#37718E]",
+                    className: " sticky top-20 md:z-10 p-4 lg:p-10 lg:px-20 text-white bg-[#37718E]",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
                             className: "text-lg lg:text-4xl font-semibold",
@@ -665,70 +665,72 @@ const Help = ()=>{
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: " lg:flex justify-center min-h-screen bg-white lg:p-10 m-2 shadow-lg ",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: "self-start sticky top-36 lg:top-48 lg:min-h-screen flex justify-around lg:inline-block bg-slate-200 lg:w-1/4 lg:m-4 py-4 hover:cursor-pointer",
-                            children: sideNavList.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    onClick: ()=>{
-                                        setSelectedOption(item?.type);
-                                        setTileHeader(item?.title);
-                                    },
-                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: ` text-[#535665] text-sm lg:text-base hover:font-semibold m-2 lg:mx-10 lg:mr-0 p-1 rounded-md lg:rounded-none lg:py-7 lg:pl-10 ${selectedOption === item.type ? " bg-white font-semibold" : ""}`,
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                            children: item.title
+                    children: sideNavList.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "self-start sticky top-36 lg:top-48 lg:min-h-screen flex justify-around lg:inline-block bg-slate-200 lg:w-1/4 lg:m-4 py-4 hover:cursor-pointer",
+                                children: sideNavList.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        onClick: ()=>{
+                                            setSelectedOption(item?.type);
+                                            setTileHeader(item?.title);
+                                        },
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: ` text-[#535665] text-sm lg:text-base hover:font-semibold m-2 lg:mx-10 lg:mr-0 p-1 rounded-md lg:rounded-none lg:py-7 lg:pl-10 ${selectedOption === item.type ? " bg-white font-semibold" : ""}`,
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                children: item.title
+                                            }, void 0, false, {
+                                                fileName: "src/components/support/Help.js",
+                                                lineNumber: 71,
+                                                columnNumber: 45
+                                            }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/components/support/Help.js",
-                                            lineNumber: 69,
+                                            lineNumber: 70,
                                             columnNumber: 37
                                         }, undefined)
+                                    }, item.title, false, {
+                                        fileName: "src/components/support/Help.js",
+                                        lineNumber: 66,
+                                        columnNumber: 33
+                                    }, undefined))
+                            }, void 0, false, {
+                                fileName: "src/components/support/Help.js",
+                                lineNumber: 64,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                                fileName: "src/components/support/Help.js",
+                                lineNumber: 76,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: " lg:w-3/4 m-4 p-2",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: " text-xl lg:text-2xl font-semibold mt-2 lg:mt-10 mb-5",
+                                        children: tileHeader
                                     }, void 0, false, {
                                         fileName: "src/components/support/Help.js",
-                                        lineNumber: 68,
+                                        lineNumber: 78,
                                         columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accordionListDefault.default), {
+                                        items: accordianList,
+                                        heading: tileHeader
+                                    }, void 0, false, {
+                                        fileName: "src/components/support/Help.js",
+                                        lineNumber: 79,
+                                        columnNumber: 31
                                     }, undefined)
-                                }, item.title, false, {
-                                    fileName: "src/components/support/Help.js",
-                                    lineNumber: 64,
-                                    columnNumber: 25
-                                }, undefined))
-                        }, void 0, false, {
-                            fileName: "src/components/support/Help.js",
-                            lineNumber: 62,
-                            columnNumber: 17
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                            fileName: "src/components/support/Help.js",
-                            lineNumber: 74,
-                            columnNumber: 17
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: " lg:w-3/4 m-4 p-2",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    className: " text-xl lg:text-2xl font-semibold mt-2 lg:mt-10 mb-5",
-                                    children: tileHeader
-                                }, void 0, false, {
-                                    fileName: "src/components/support/Help.js",
-                                    lineNumber: 76,
-                                    columnNumber: 21
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accordionListDefault.default), {
-                                    items: accordianList,
-                                    heading: tileHeader
-                                }, void 0, false, {
-                                    fileName: "src/components/support/Help.js",
-                                    lineNumber: 77,
-                                    columnNumber: 23
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/support/Help.js",
-                            lineNumber: 75,
-                            columnNumber: 17
-                        }, undefined)
-                    ]
-                }, void 0, true, {
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/support/Help.js",
+                                lineNumber: 77,
+                                columnNumber: 25
+                            }, undefined)
+                        ]
+                    }, void 0, true)
+                }, void 0, false, {
                     fileName: "src/components/support/Help.js",
                     lineNumber: 61,
                     columnNumber: 13
@@ -753,7 +755,37 @@ _s(Help, "IkxM6no5GCLEYf67bKPbScD9mw4=", false, function() {
     ];
 });
 _c = Help;
-exports.default = Help;
+exports.default = Help /**
+ * return sideNavList.length === 0 ? 'Loading...' :  (
+    <div className=' bg-[#37718E] tracking-wide' >
+        <div className='mx-auto p-5 w-11/12 '>
+            <div className=' sticky top-20 sm:z-10 p-4  lg:p-10  lg:px-20 text-white bg-[#37718E]' >
+                <header className='text-lg lg:text-4xl font-semibold' >Help & Support</header>
+                <p className='text-xs lg:text-lg' >Let's take a step ahead and help you better.</p>
+            </div>
+            <div className=' lg:flex  justify-center min-h-screen bg-white lg:p-10 m-2 shadow-lg  ' >
+                <div className='self-start sticky top-36 lg:top-48 lg:min-h-screen flex justify-around lg:inline-block bg-slate-200 lg:w-1/4  lg:m-4 py-4 hover:cursor-pointer' >
+                    {sideNavList.map(item=>(
+                        <div key={item.title} onClick={()=>{
+                            setSelectedOption(item?.type)
+                            setTileHeader(item?.title)
+                        }} >
+                            <div className= {` text-[#535665] text-sm lg:text-base hover:font-semibold m-2 lg:mx-10 lg:mr-0 p-1 rounded-md lg:rounded-none lg:py-7 lg:pl-10 ${selectedOption === item.type ? ' bg-white font-semibold' : ''}`}>
+                                    <p>{item.title}</p>    
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <hr/>
+                <div className='  lg:w-3/4  m-4 p-2' >
+                    <div className=' text-xl lg:text-2xl font-semibold mt-2 lg:mt-10 mb-5' >{tileHeader}</div>
+                    { <AccordionList  items={accordianList} heading={tileHeader} />}
+                </div>
+            </div>
+        </div>
+    </div>
+  )
+ */ ;
 var _c;
 $RefreshReg$(_c, "Help");
 

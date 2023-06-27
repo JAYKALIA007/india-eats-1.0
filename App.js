@@ -7,17 +7,15 @@ import { Provider } from 'react-redux'
 import store from './src/utils/store';
 import useOnline from './src/utils/useOnline';
 import OfflineMessage from './src/components/OfflineMessage';
-// import ShimmerSearchPage from './src/components/shimmer/ShimmerSearchPage';
-// import ShimmerMenuPage from './src/components/shimmer/ShimmerMenuPage';
 import Cart from './src/components/cart/Cart';
 import RestaurantMenu from './src/components/menu/RestaurantMenu';
 import PageInDevelopment from './src/components/PageInDevelopment';
 import Error from './src/components/Error';
 import SearchBar from './src/components/search/SearchBar';
-// import Help from './src/components/support/Help';
+import FallbackHelp from './src/components/fallbacks_for_lazy_load_components/FallbackHelp';
+
 //lazy load the following components
 const Help = lazy(()=>import('./src/components/support/Help'))
-// const RestaurantMenu = lazy (()=> import('./src/components/RestaurantMenu'))
 /**
  * 
  * APP LAYOUT
@@ -63,9 +61,6 @@ const appRouter = createBrowserRouter([
             {
                 path : '/restaurants/:slug',
                 element: <RestaurantMenu />
-                // <Suspense fallback={<ShimmerMenuPage/>} >
-                //     <RestaurantMenu />
-                // </Suspense>
             },
             {
                 path: '/cart',
@@ -78,7 +73,7 @@ const appRouter = createBrowserRouter([
             {
                 path: '/support',
                 element: (
-                    <Suspense fallback={<p>Loading page...</p>} >
+                    <Suspense fallback={<FallbackHelp />} >
                         <Help />
                     </Suspense>
                 )
