@@ -1140,8 +1140,8 @@ img, video {
 }
 
 @media (min-width: 640px) {
-  .sm\:left-96 {
-    left: 24rem;
+  .sm\:left-\[33rem\] {
+    left: 33rem;
   }
 
   .sm\:top-1 {
@@ -1150,14 +1150,6 @@ img, video {
 
   .sm\:top-8 {
     top: 2rem;
-  }
-
-  .sm\:left-\[26rem\] {
-    left: 26rem;
-  }
-
-  .sm\:left-\[33rem\] {
-    left: 33rem;
   }
 
   .sm\:z-10 {
