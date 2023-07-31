@@ -14,6 +14,7 @@ import Error from './src/components/Error';
 import SearchBar from './src/components/search/SearchBar';
 import FallbackHelp from './src/components/fallbacks_for_lazy_load_components/FallbackHelp';
 import { SupportPageCacheProvider } from './src/utils/contexts/supportPageContext';
+import { CartProvider } from './src/utils/contexts/cartContext';
 
 //lazy load the following components
 const Help = lazy(()=>import('./src/components/support/Help'))
@@ -39,10 +40,10 @@ const Help = lazy(()=>import('./src/components/support/Help'))
 const AppLayout = () => {
     const isOnline = useOnline()
     return(
-        <>
+        <CartProvider>
             <Header />
             {isOnline ? <Outlet /> : <OfflineMessage />}   
-        </>
+        </CartProvider>
     )
 }
 const appRouter = createBrowserRouter([
@@ -90,9 +91,7 @@ const appRouter = createBrowserRouter([
 ])
 const rootElement = ReactDOM.createRoot(document.getElementById('root'))
 rootElement.render( 
-    <StrictMode>
-        <Provider store={store}>
-            <RouterProvider router={appRouter} />
-        </Provider> 
-    </StrictMode>
+    <Provider store={store}>
+        <RouterProvider router={appRouter} />
+    </Provider> 
 )

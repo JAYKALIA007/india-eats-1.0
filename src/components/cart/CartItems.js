@@ -1,10 +1,10 @@
 import React from 'react'
 import CartItemCard from './CartItemCard'
-import { useDispatch } from 'react-redux'
 import { emptyCart } from '../../utils/cartSlice'
 import { totalCartPrice } from '../../utils/helper'
+import { useCartDispatch } from '../../utils/contexts/cartContext'
 const CartItems = ({data}) => {
-    const dispatch = useDispatch()
+    const dispatch = useCartDispatch()
     if(!data) return null
     const totalPrice = totalCartPrice(data?.items)
   return (
@@ -28,7 +28,7 @@ const CartItems = ({data}) => {
             </div>
         </div>
         <div className='text-right px-7 ' >
-            <button className=' bg-gray-300 text-white p-2 px-6 font-bold  hover:bg-orange-500 ' onClick={()=>{dispatch(emptyCart())}}  >EMPTY CART</button>
+            <button className=' bg-gray-300 text-white p-2 px-6 font-bold  hover:bg-orange-500 ' onClick={()=>{dispatch({type: 'emptyCart'})}}  >EMPTY CART</button>
             <button className=' bg-orange-500 text-white p-2 px-6 font-bold ml-4' onClick={()=>{console.log(`checkout functionality hasn't been added yet`)}} >CHECKOUT</button>
         </div>
     </div>

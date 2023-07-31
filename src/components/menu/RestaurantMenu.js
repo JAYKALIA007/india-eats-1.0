@@ -4,26 +4,25 @@ import useFetchMenu from '../../utils/useFetchMenu'
 import RestaurantInfo from './RestaurantInfo'
 import RestaurantMenuSections from './RestaurantMenuSections'
 import ShimmerMenuPage from '../shimmer/ShimmerMenuPage'
-import {  useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { HiOutlineShoppingBag } from 'react-icons/hi2'
 import { totalCartPrice } from '../../utils/helper'
+import { useCartStore } from '../../utils/contexts/cartContext'
 
 
 const RestaurantMenu = () => {
     const [ showFooter, setShowFooter ] = useState(false)
-    const cartItems = useSelector(store=>store.cart.cartInfo)
-    
-    let totalPrice = cartItems?.items ? totalCartPrice(cartItems?.items) : 0
+    const { cartInfo } = useCartStore()
+
+    let totalPrice = cartInfo?.items ? totalCartPrice(cartInfo?.items) : 0
 
     useEffect(()=>{
-        setShowFooter(cartItems?.items ? true : false)
-    },[ cartItems ])
+        setShowFooter(cartInfo?.items ? true : false)
+    },[ cartInfo ])
 
     const { slug } = useParams()
     const slugArray = slug.split('-')
     const resId = slugArray[slugArray.length - 1]
-    // console.log(resId)
     const menu = useFetchMenu(resId)
     useEffect(() =>{
         window.scrollTo(0,0)
@@ -40,7 +39,7 @@ const RestaurantMenu = () => {
                             <Link to='/cart' >
                                 <div className='bg-[#5FB246] p-4  sticky bottom-0 mr-12 text-white flex justify-between text-sm font-bold  w-11/12 ml-3' >
                                     <div className='flex ' >
-                                        <p>{`${cartItems?.items.length} Items `}</p> 
+                                        <p>{`${cartInfo?.items.length} Items `}</p> 
                                         <p className='mx-1' > | </p>
                                         <p> {`₹ ${totalPrice}`}</p>
                                     </div>

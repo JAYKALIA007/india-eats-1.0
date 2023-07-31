@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux'
 import CartItems from './CartItems'
 import { Link } from 'react-router-dom'
 import { EMPTY_CART_IMAGE_CDN_URL } from '../../../constants'
+import { useCartStore } from '../../utils/contexts/cartContext'
 const Cart = () => {
-    const cartItems = useSelector(store =>  store.cart.cartInfo)
 
-    const { restaurantName, items } = cartItems
+    const {cartInfo} = useCartStore()
+    const { restaurantName, items } = cartInfo
 
     const emptyCartMessage = <div className='text-center mt-20 ' >
       <img className='mx-auto h-80 ' src={EMPTY_CART_IMAGE_CDN_URL} alt='empty cart' />
@@ -17,24 +17,17 @@ const Cart = () => {
     </div>
   return( 
     <div className='grid grid-flow-col m-10 ' >
-      <div className='col-span-4' >
-
-      </div>
-
+      <div className='col-span-4' ></div>
       <div className='col-span-4' >
         { items == undefined ? emptyCartMessage : (
           <div>
             <span className='text-lg font-bold' >{restaurantName}</span>
             <hr/>
-            <CartItems data={cartItems} />
+            <CartItems data={cartInfo} />
           </div>
         )}
-          
       </div>
-
-      <div className='col-span-4' >
-
-      </div>
+      <div className='col-span-4' ></div>
     </div>
   )
 }

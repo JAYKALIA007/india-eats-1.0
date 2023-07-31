@@ -1,13 +1,12 @@
 import { MENU_ITEMS_IMAGE_CDN_URL } from '../../../constants'
 import { BsCircleFill } from 'react-icons/bs'
 import { TiArrowSortedUp } from 'react-icons/ti'
-import { useDispatch } from 'react-redux'
-import { addToCart } from '../../utils/cartSlice'
 import { MdFastfood } from 'react-icons/md'
+import { useCartDispatch } from '../../utils/contexts/cartContext'
 const RestaurantMenuItems = ({data, title, restaurantName}) => {
+  const dispatch = useCartDispatch()
   if(!data) return null
-  // console.log(data)
-  const dispatch = useDispatch()
+
     const displayItems = data.map(item=>(
       <div className='my-10 [&:not(:last-child)]:border-b border-slate-200' key={item?.card.info?.id} >
         <div className='w-full flex' >
@@ -28,7 +27,14 @@ const RestaurantMenuItems = ({data, title, restaurantName}) => {
                   <button 
                       className='bg-white shadow-lg  w-24 p-2 rounded-md text-green-600 font-bold text-sm ' 
                       onClick={()=>{
-                        dispatch(addToCart({resName: restaurantName , itemName : item?.card?.info?.name , itemPrice : item?.card?.info?.price ? item?.card?.info?.price/100 : item?.card?.info?.defaultPrice/100}))
+                        dispatch({
+                          type: 'addToCart',
+                          payload: {
+                            resName: restaurantName , 
+                            itemName : item?.card?.info?.name , 
+                            itemPrice : item?.card?.info?.price ? item?.card?.info?.price/100 : item?.card?.info?.defaultPrice/100  
+                          }
+                        })
                       }}
                     >
                     ADD

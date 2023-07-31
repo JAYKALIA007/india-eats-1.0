@@ -3,18 +3,15 @@ import { MdOutlineDirectionsBike } from 'react-icons/md'
 import { CgTimelapse } from 'react-icons/cg'
 import { HiOutlineCurrencyRupee } from 'react-icons/hi2'
 import { FaStar } from 'react-icons/fa'
-const RestaurantInfo = ({name,cuisines,areaName,totalRatingsString,costForTwoMessage,cloudinaryImageId,avgRatingString,aggregatedDiscountInfo,expectationNotifiers,sla}) => {
-  // console.log(name)
+const RestaurantInfo = ({name,cuisines,areaName,totalRatingsString,costForTwoMessage,cloudinaryImageId,avgRatingString,aggregatedDiscountInfo,expectationNotifiers,availabilityServiceabilityMessage, sla}) => {
   return (
     <div className="my-12 text-[#82838F] text-sm " >
       <div className="flex justify-between  border-b border-gray-400 border-dashed	mr-20 align-baseline" >
         <div className='h-full' >
           <p className="text-[#282C3F] text-2xl font-bold my-2">{name}</p>
           <p>{cuisines.join(', ')}</p>
-          <p>{areaName}</p>
-          { expectationNotifiers && 
-              <p className="text-base  my-2" ><MdOutlineDirectionsBike className='inline mr-2' />{expectationNotifiers[0]?.text}</p>
-          }
+          <p>{areaName}</p> 
+          <p className="text-base  my-2" ><MdOutlineDirectionsBike className='inline mr-2' />{expectationNotifiers ? expectationNotifiers[0]?.text : availabilityServiceabilityMessage}</p>
           
         </div>
         <div className='border border-gray-300 h-24 p-1 w-20 text-center rounded-md shadow-sm relative top-4 ' >   
