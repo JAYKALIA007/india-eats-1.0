@@ -588,21 +588,15 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _reactRedux = require("react-redux");
 var _constants = require("../../../constants");
 var _accordionList = require("./AccordionList");
 var _accordionListDefault = parcelHelpers.interopDefault(_accordionList);
-var _supportPageCacheSlice = require("../../utils/supportPageCacheSlice");
+var _supportPageContext = require("../../utils/contexts/supportPageContext");
 var _s = $RefreshSig$();
 const Help = ()=>{
     _s();
-    const [sideNavList, setSideNavList] = (0, _react.useState)([]);
-    const [accordianList, setAccordionList] = (0, _react.useState)([]);
-    const [selectedOption, setSelectedOption] = (0, _react.useState)(`partner-onboarding`);
-    const [tileHeader, setTileHeader] = (0, _react.useState)(`Partner Onboarding`);
-    const dispatch = (0, _reactRedux.useDispatch)();
-    const cachedSideNavData = (0, _reactRedux.useSelector)((store)=>store.supportPageCache.sideNavData);
-    const cachedAccordionData = (0, _reactRedux.useSelector)((store)=>store.supportPageCache.accordionData);
+    const { sideNavData , accordionData , selectedOption , titleHeader  } = (0, _supportPageContext.useSupportStore)();
+    const dispatch = (0, _supportPageContext.useSupportDispatch)();
     (0, _react.useEffect)(()=>{
         fetchSideNavData();
     }, []);
@@ -614,24 +608,28 @@ const Help = ()=>{
     ]);
     const fetchSideNavData = async ()=>{
         //cache side nav data to reduce network calls
-        if (cachedSideNavData.length === 0) {
+        if (sideNavData.length === 0) {
             const data = await fetch((0, _constants.HELP_PAGE_DATA_URL));
             const jsonData = await data.json();
-            setSideNavList(jsonData?.data?.issueTypes?.data);
-            dispatch((0, _supportPageCacheSlice.addDataToSideNav)(jsonData?.data?.issueTypes?.data));
-        } else setSideNavList(cachedSideNavData);
+            dispatch({
+                type: "addDataToSideNav",
+                payload: jsonData?.data?.issueTypes?.data
+            });
+        }
     };
     const fetchAccordionListData = async ()=>{
-        //cache acoordiion data to reduce network calls
-        if (!cachedAccordionData[selectedOption]) {
+        //cache accordion data to reduce network calls
+        if (!accordionData[selectedOption]) {
             const url = (0, _constants.HELP_PAGE_ACCORDION_LIST_DATA) + selectedOption;
             const data = await fetch(url);
             const jsonData = await data.json();
-            setAccordionList(jsonData?.data?.issues?.data);
             let tempObjToStoreAccordionData = {};
             tempObjToStoreAccordionData[selectedOption] = jsonData?.data?.issues?.data;
-            dispatch((0, _supportPageCacheSlice.addDataToAccordion)(tempObjToStoreAccordionData));
-        } else setAccordionList(cachedAccordionData[selectedOption]);
+            dispatch({
+                type: "addDataToAccordion",
+                payload: tempObjToStoreAccordionData
+            });
+        }
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: " bg-[#37718E] tracking-wide",
@@ -646,7 +644,7 @@ const Help = ()=>{
                             children: "Help & Support"
                         }, void 0, false, {
                             fileName: "src/components/support/Help.js",
-                            lineNumber: 58,
+                            lineNumber: 43,
                             columnNumber: 17
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -654,25 +652,31 @@ const Help = ()=>{
                             children: "Let's take a step ahead and help you better."
                         }, void 0, false, {
                             fileName: "src/components/support/Help.js",
-                            lineNumber: 59,
+                            lineNumber: 44,
                             columnNumber: 17
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/support/Help.js",
-                    lineNumber: 57,
+                    lineNumber: 42,
                     columnNumber: 13
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: " lg:flex justify-center min-h-screen bg-white lg:p-10 m-2 shadow-lg ",
-                    children: sideNavList.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                    children: sideNavData.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "self-start sticky top-36 lg:top-48 lg:min-h-screen flex justify-around lg:inline-block bg-slate-200 lg:w-1/4 lg:m-4 py-4 hover:cursor-pointer",
-                                children: sideNavList.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: sideNavData.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                         onClick: ()=>{
-                                            setSelectedOption(item?.type);
-                                            setTileHeader(item?.title);
+                                            dispatch({
+                                                type: "setSelectedOption",
+                                                payload: item?.type
+                                            });
+                                            dispatch({
+                                                type: "setTitleHeader",
+                                                payload: item?.title
+                                            });
                                         },
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                             className: ` text-[#535665] text-sm lg:text-base hover:font-semibold m-2 lg:mx-10 lg:mr-0 p-1 rounded-md lg:rounded-none lg:py-7 lg:pl-10 ${selectedOption === item.type ? " bg-white font-semibold" : ""}`,
@@ -680,27 +684,27 @@ const Help = ()=>{
                                                 children: item.title
                                             }, void 0, false, {
                                                 fileName: "src/components/support/Help.js",
-                                                lineNumber: 71,
+                                                lineNumber: 56,
                                                 columnNumber: 45
                                             }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/components/support/Help.js",
-                                            lineNumber: 70,
+                                            lineNumber: 55,
                                             columnNumber: 37
                                         }, undefined)
                                     }, item.title, false, {
                                         fileName: "src/components/support/Help.js",
-                                        lineNumber: 66,
+                                        lineNumber: 51,
                                         columnNumber: 33
                                     }, undefined))
                             }, void 0, false, {
                                 fileName: "src/components/support/Help.js",
-                                lineNumber: 64,
+                                lineNumber: 49,
                                 columnNumber: 25
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                                 fileName: "src/components/support/Help.js",
-                                lineNumber: 76,
+                                lineNumber: 61,
                                 columnNumber: 25
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -708,84 +712,52 @@ const Help = ()=>{
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                         className: " text-xl lg:text-2xl font-semibold mt-2 lg:mt-10 mb-5",
-                                        children: tileHeader
+                                        children: titleHeader
                                     }, void 0, false, {
                                         fileName: "src/components/support/Help.js",
-                                        lineNumber: 78,
+                                        lineNumber: 63,
                                         columnNumber: 29
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accordionListDefault.default), {
-                                        items: accordianList,
-                                        heading: tileHeader
+                                        items: accordionData[selectedOption]
                                     }, void 0, false, {
                                         fileName: "src/components/support/Help.js",
-                                        lineNumber: 79,
+                                        lineNumber: 64,
                                         columnNumber: 31
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/support/Help.js",
-                                lineNumber: 77,
+                                lineNumber: 62,
                                 columnNumber: 25
                             }, undefined)
                         ]
                     }, void 0, true)
                 }, void 0, false, {
                     fileName: "src/components/support/Help.js",
-                    lineNumber: 61,
+                    lineNumber: 46,
                     columnNumber: 13
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/support/Help.js",
-            lineNumber: 56,
+            lineNumber: 41,
             columnNumber: 9
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/support/Help.js",
-        lineNumber: 55,
+        lineNumber: 40,
         columnNumber: 5
     }, undefined);
 };
-_s(Help, "IkxM6no5GCLEYf67bKPbScD9mw4=", false, function() {
+_s(Help, "lKoE1RfOJS2A+kHRcOmjU+12fFM=", false, function() {
     return [
-        (0, _reactRedux.useDispatch),
-        (0, _reactRedux.useSelector),
-        (0, _reactRedux.useSelector)
+        (0, _supportPageContext.useSupportStore),
+        (0, _supportPageContext.useSupportDispatch)
     ];
 });
 _c = Help;
-exports.default = Help /**
- * return sideNavList.length === 0 ? 'Loading...' :  (
-    <div className=' bg-[#37718E] tracking-wide' >
-        <div className='mx-auto p-5 w-11/12 '>
-            <div className=' sticky top-20 sm:z-10 p-4  lg:p-10  lg:px-20 text-white bg-[#37718E]' >
-                <header className='text-lg lg:text-4xl font-semibold' >Help & Support</header>
-                <p className='text-xs lg:text-lg' >Let's take a step ahead and help you better.</p>
-            </div>
-            <div className=' lg:flex  justify-center min-h-screen bg-white lg:p-10 m-2 shadow-lg  ' >
-                <div className='self-start sticky top-36 lg:top-48 lg:min-h-screen flex justify-around lg:inline-block bg-slate-200 lg:w-1/4  lg:m-4 py-4 hover:cursor-pointer' >
-                    {sideNavList.map(item=>(
-                        <div key={item.title} onClick={()=>{
-                            setSelectedOption(item?.type)
-                            setTileHeader(item?.title)
-                        }} >
-                            <div className= {` text-[#535665] text-sm lg:text-base hover:font-semibold m-2 lg:mx-10 lg:mr-0 p-1 rounded-md lg:rounded-none lg:py-7 lg:pl-10 ${selectedOption === item.type ? ' bg-white font-semibold' : ''}`}>
-                                    <p>{item.title}</p>    
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <hr/>
-                <div className='  lg:w-3/4  m-4 p-2' >
-                    <div className=' text-xl lg:text-2xl font-semibold mt-2 lg:mt-10 mb-5' >{tileHeader}</div>
-                    { <AccordionList  items={accordianList} heading={tileHeader} />}
-                </div>
-            </div>
-        </div>
-    </div>
-  )
- */ ;
+exports.default = Help;
 var _c;
 $RefreshReg$(_c, "Help");
 
@@ -794,7 +766,7 @@ $RefreshReg$(_c, "Help");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"bdVon","../../../constants":"8eIVP","./AccordionList":"bYLDU","../../utils/supportPageCacheSlice":"13BIQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bYLDU":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../../constants":"8eIVP","./AccordionList":"bYLDU","../../utils/contexts/supportPageContext":"kZvXZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bYLDU":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8c8e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -811,7 +783,7 @@ var _s = $RefreshSig$();
 const AccordionList = ({ items  })=>{
     _s();
     const [selectedIndex, setSelectedIndex] = (0, _react.useState)(0);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    return items !== undefined && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: items.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 onClick: ()=>setSelectedIndex(item.id),
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _accordionItemDefault.default), {

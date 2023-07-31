@@ -66,11 +66,11 @@ const Body = () => {
         {restaurantsData.map(restaurant => {
           resSlug.current = restaurant?.cta?.link.split('/')
           resSlug.current = resSlug.current[resSlug.current.length-1]
-          console.log(resSlug.current)
+          // console.log(resSlug.current)
           return(
             <Link className=' w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'  to={`/restaurants/${resSlug.current}`} key={restaurant?.info?.id}>
               <RestaurantCard {...restaurant?.info} />
-              {console.log(restaurant)}
+              {/* {console.log(restaurant)} */}
             </Link>
           )
         })}

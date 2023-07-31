@@ -2,7 +2,7 @@ import { useState } from 'react'
 import AccordionItem from './AccordionItem'
 const AccordionList = ({items}) => {
     const [ selectedIndex , setSelectedIndex ] = useState(0)
-  return (
+  return items!==undefined && (
     <div>
         {items.map(item=>(
             <div key={item.id} onClick={()=>setSelectedIndex(item.id)} >

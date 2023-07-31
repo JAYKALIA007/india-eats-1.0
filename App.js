@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, StrictMode } from 'react'
 import ReactDOM  from 'react-dom/client'
 import Header from './src/components/page_layout/Header'
 import Body from './src/components/page_layout/Body'
@@ -13,6 +13,7 @@ import PageInDevelopment from './src/components/PageInDevelopment';
 import Error from './src/components/Error';
 import SearchBar from './src/components/search/SearchBar';
 import FallbackHelp from './src/components/fallbacks_for_lazy_load_components/FallbackHelp';
+import { SupportPageCacheProvider } from './src/utils/contexts/supportPageContext';
 
 //lazy load the following components
 const Help = lazy(()=>import('./src/components/support/Help'))
@@ -74,7 +75,9 @@ const appRouter = createBrowserRouter([
                 path: '/support',
                 element: (
                     <Suspense fallback={<FallbackHelp />} >
-                        <Help />
+                        <SupportPageCacheProvider>
+                            <Help />
+                        </SupportPageCacheProvider>
                     </Suspense>
                 )
             },
@@ -87,7 +90,9 @@ const appRouter = createBrowserRouter([
 ])
 const rootElement = ReactDOM.createRoot(document.getElementById('root'))
 rootElement.render( 
-    <Provider store={store}>
-        <RouterProvider router={appRouter} />
-    </Provider> 
+    <StrictMode>
+        <Provider store={store}>
+            <RouterProvider router={appRouter} />
+        </Provider> 
+    </StrictMode>
 )
