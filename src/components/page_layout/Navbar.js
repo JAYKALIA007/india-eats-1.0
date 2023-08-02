@@ -4,12 +4,12 @@ import { HiOutlineShoppingBag, HiOutlineUser, HiOutlineReceiptPercent, HiMagnify
 import { RxHamburgerMenu , RxCross1 } from 'react-icons/rx'
 import { TfiHelpAlt } from 'react-icons/tfi'
 import { useSelector } from 'react-redux'
+import { useCartStore } from '../../utils/contexts/cartContext'
 
 const Navbar = () => {
-  const [ showSideNav , setShowSideNav ] = useState(false)
-  const cartItems = useSelector(store => store.cart.cartInfo)
+  const { cartInfo } = useCartStore()
   let totalItemsCount = 0
-  cartItems?.items && cartItems?.items.map(item=> totalItemsCount += item.count)
+  cartInfo?.items && cartInfo?.items.map(item=> totalItemsCount += item.count)
   function openNav() {
     document.getElementById("myNav").style.width = "100%";
   }

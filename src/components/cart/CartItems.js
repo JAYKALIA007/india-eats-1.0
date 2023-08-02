@@ -1,6 +1,5 @@
 import React from 'react'
 import CartItemCard from './CartItemCard'
-import { emptyCart } from '../../utils/cartSlice'
 import { totalCartPrice } from '../../utils/helper'
 import { useCartDispatch } from '../../utils/contexts/cartContext'
 const CartItems = ({data}) => {
