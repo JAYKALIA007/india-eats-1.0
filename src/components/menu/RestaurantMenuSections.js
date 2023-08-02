@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import RestaurantMenuItems from './RestaurantMenuItems'
 
 const RestaurantMenuSections = ({cards , restaurantName}) => {

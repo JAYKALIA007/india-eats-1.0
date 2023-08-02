@@ -1,4 +1,3 @@
-import React,{ useState } from 'react'
 import { IMAGE_CDN_URL } from '../../../constants'
 import { FaStar } from "react-icons/fa";
 import { HiOutlineReceiptPercent } from "react-icons/hi2"

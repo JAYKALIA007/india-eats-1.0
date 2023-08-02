@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { HiOutlineShoppingBag, HiOutlineUser, HiOutlineReceiptPercent, HiMagnifyingGlass } from 'react-icons/hi2'
 import { RxHamburgerMenu , RxCross1 } from 'react-icons/rx'
 import { TfiHelpAlt } from 'react-icons/tfi'
-import { useSelector } from 'react-redux'
 import { useCartStore } from '../../utils/contexts/cartContext'
 
 const Navbar = () => {

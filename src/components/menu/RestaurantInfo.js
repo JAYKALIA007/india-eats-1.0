@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { MdOutlineDirectionsBike } from 'react-icons/md'
 import { CgTimelapse } from 'react-icons/cg'
 import { HiOutlineCurrencyRupee } from 'react-icons/hi2'

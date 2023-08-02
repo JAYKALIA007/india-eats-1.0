@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import { useParams } from 'react-router'
 import useFetchMenu from '../../utils/useFetchMenu'
 import RestaurantInfo from './RestaurantInfo'
@@ -10,14 +10,28 @@ import { totalCartPrice } from '../../utils/helper'
 import { useCartStore } from '../../utils/contexts/cartContext'
 
 
+const initialState = {
+    showFooter: false
+}
+
+function reducer(state, action){
+    switch(action.type){
+        case 'toggleFooter':
+            return {showFooter : action.payload}
+    }
+}
+
 const RestaurantMenu = () => {
-    const [ showFooter, setShowFooter ] = useState(false)
+
+    const [ state , dispatch ] = useReducer(reducer, initialState)
+    const { showFooter } = state
+
     const { cartInfo } = useCartStore()
 
     let totalPrice = cartInfo?.items ? totalCartPrice(cartInfo?.items) : 0
 
     useEffect(()=>{
-        setShowFooter(cartInfo?.items ? true : false)
+        dispatch({type: 'toggleFooter', payload: cartInfo?.items ? true : false})
     },[ cartInfo ])
 
     const { slug } = useParams()
