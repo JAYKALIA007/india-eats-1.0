@@ -15,6 +15,7 @@ import SearchBar from './src/components/search/SearchBar';
 import FallbackHelp from './src/components/fallbacks_for_lazy_load_components/FallbackHelp';
 import { SupportPageCacheProvider } from './src/utils/contexts/supportPageContext';
 import { CartProvider } from './src/utils/contexts/cartContext';
+import { SearchSuggestionsCacheProvider } from './src/utils/contexts/searchSuggestionsContext';
 
 //lazy load the following components
 const Help = lazy(()=>import('./src/components/support/Help'))
@@ -58,7 +59,9 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: '/search',
-                element : <SearchBar />
+                element : <SearchSuggestionsCacheProvider>
+                    <SearchBar />
+                </SearchSuggestionsCacheProvider>
             },
             {
                 path : '/restaurants/:slug',
