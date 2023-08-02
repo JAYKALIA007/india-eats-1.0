@@ -1,17 +1,20 @@
-import { useState , useEffect } from 'react'
+import { useState , useEffect, useRef } from 'react'
 import { IMAGE_CDN_URL, SEARCH_POPULAR_CUISINES_SUGGESTIONS } from '../../../constants'
 import { FaSearch } from "react-icons/fa";
+import { RxCross1 } from "react-icons/rx"
 import SearchResultsList from './SearchResultsList';
 import ShimmerSearchPage from '../shimmer/ShimmerSearchPage';
-import { useDispatch, useSelector } from 'react-redux'
-import { addToSearchCacheSlice } from '../../utils/searchSuggestionsCacheSlice';
+import { useSearchSuggestionsCacheDispatch, useSearchSuggestionsCacheStore } from '../../utils/contexts/searchSuggestionsContext';
 const SearchBar = () => {
     const [ searchText , setSearchText ] = useState('')
     const [ popularCuisines , setPopularCuisines ] = useState([])
     const [ searchResults , setSearchResults ] = useState([])
     const [ filterFlag , setFilterFlag ] = useState(false)
-    const dispatch = useDispatch()
-    const searchCacheItems = useSelector(store=> store.searchSuggestionsCache.cache)
+
+    const dispatch = useSearchSuggestionsCacheDispatch()
+    const { searchCacheItems } = useSearchSuggestionsCacheStore()
+
+    const inputRef = useRef(null)
 
     useEffect(()=>{
         fetchPopularCuisines()
@@ -43,10 +46,13 @@ const SearchBar = () => {
 
             //add to cache
             const obj = {}
-            obj[searchText] = jsonData?.data?.suggestions
-            dispatch(addToSearchCacheSlice({
-                [searchText] : jsonData?.data?.suggestions
-            }))    
+            obj[searchText] = jsonData?.data?.suggestions    
+            dispatch({
+                type: 'addToSearchCacheSlice',
+                payload: {
+                    [searchText] : jsonData?.data?.suggestions
+                }
+            })
             setSearchResults(jsonData?.data?.suggestions)
         }
     }
@@ -62,7 +68,6 @@ const SearchBar = () => {
             <div className='w-20  mx-2 hover:cursor-pointer ' 
                 key={cuisine?.id} 
                 onClick={()=>{
-                    // console.log(itemName)
                     setSearchText(itemName)
                 }} 
             >
@@ -73,17 +78,26 @@ const SearchBar = () => {
     })
     return(
         <div className=" text-center mt-16" >
-            <input type="text" 
+            <input 
+                ref={inputRef}
+                type="text" 
                 placeholder="Search for restaurants and food" 
                 className="border border-black w-3/5 rounded-sm p-3 text-sm sm:text-lg " 
                 onChange={(e)=>{
                     setSearchText(e.target.value)
                 }}
                 value={searchText}
+                onKeyDown={event => {
+                    if (event.key === 'Enter') {
+                      inputRef.current.blur()
+                    }
+                  }}
             />
-            <FaSearch className=" text-gray-600 inline text-2xl font-extralight relative right-12 cursor-pointer " onClick={()=>{
-                
-            }}/>
+            {searchText === '' ? (
+                <FaSearch className=" text-gray-600 inline text-2xl font-extralight relative right-12 cursor-pointer " />
+            ):(<RxCross1  className=" text-gray-600 inline text-2xl relative right-12 bottom-1 cursor-pointer "
+                          onClick={()=>setSearchText('')}    
+            />)}
             {popularCuisines.length === 0 ? <ShimmerSearchPage /> : filterFlag ? 
                     <SearchResultsList data={searchResults}  /> : (
                     <>

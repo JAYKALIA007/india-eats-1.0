@@ -602,10 +602,6 @@ img, video {
   width: 8rem;
 }
 
-.w-80 {
-  width: 20rem;
-}
-
 .w-\[100\%\] {
   width: 100%;
 }
@@ -1082,6 +1078,11 @@ img, video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1258,11 +1259,6 @@ img, video {
     margin-right: 2.5rem;
   }
 
-  .lg\:mx-3 {
-    margin-left: .75rem;
-    margin-right: .75rem;
-  }
-
   .lg\:mx-4 {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -1319,10 +1315,6 @@ img, video {
 
   .lg\:w-4\/5 {
     width: 80%;
-  }
-
-  .lg\:w-72 {
-    width: 18rem;
   }
 
   .lg\:w-\[30\%\] {
@@ -1445,10 +1437,6 @@ img, video {
 }
 
 @media (min-width: 1536px) {
-  .\32 xl\:m-7 {
-    margin: 1.75rem;
-  }
-
   .\32 xl\:mx-16 {
     margin-left: 4rem;
     margin-right: 4rem;
